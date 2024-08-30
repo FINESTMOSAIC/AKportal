@@ -2,8 +2,15 @@ import React from 'react';
 
 import styles from '../styles/login.module.css';
 import ActiveOrders from './activeorders';
+import { useRouter } from 'next/router';
+
 
 const Login = () => {
+  const router = useRouter();
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    router.push('./activeorders');
+  };
   return (
     <div className={styles.container}>
       <div className={styles.screen}>
@@ -17,10 +24,10 @@ const Login = () => {
               <i className={`fas fa-lock ${styles.loginIcon}`}></i>
               <input type="text" className={styles.loginInput} placeholder="Name" />
             </div>
-            <a href='./activeorders'><button className={`${styles.button} ${styles.loginSubmit}`}>
+            <button onClick={handleButtonClick} className={`${styles.button} ${styles.loginSubmit}`}>
               <span className={styles.buttonText}>Log In Now</span>
               <i className={`fas fa-chevron-right ${styles.buttonIcon}`}></i>
-            </button></a>
+            </button>
           </form>
          
         </div>
