@@ -1,0 +1,87 @@
+.whole{
+    overflow: hidden;
+}
+.nav{
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        height: 80px;
+        background-color: orange;
+        display: flex;
+        justify-content: space-between;
+
+
+
+}
+
+.footer{
+    margin: 0;
+    padding: 0;
+    height: 62px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+
+}
+.nav > div > img {
+    margin: 10px;
+    height: 60px;
+    width: auto;
+}
+.navcontent{
+    padding: 30px;
+    /* position: absolute;
+    right:0; */
+}
+.navcontent > li{
+
+        display: inline;
+        padding: 10px;
+
+}
+
+.center{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+
+}
+.home{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    
+
+
+/* background: rgba(255, 124, 0, 0.3);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(15.7px);
+-webkit-backdrop-filter: blur(15.7px);
+border: 1px solid rgba(255, 124, 0, 0.3); */
+
+}
+.navimport{
+    padding-right: 30px;
+}
+.content{
+    padding: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    margin-bottom: 110px;
+}
+
+.name > h1 {
+    font-size: 100px ;
+    font-weight: bolder;
+    color: orange;
+    text-shadow: 2px 2px 8px #000000;
+}

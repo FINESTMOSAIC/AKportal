@@ -1,0 +1,63 @@
+.gridd{
+    display: grid;
+    grid-template-columns: 15% 80%;
+}
+
+
+.styled_hr {
+    border: 0;
+    height: 1px;
+    background-color: rgb(255, 119, 0);
+    margin: 20px 0;
+    width: 100%;            /* Set width */
+    border-radius: 10px;   /* Rounded corners */
+}
+
+.container{
+    height:100vh;
+    background: white;
+
+}
+
+.upper{
+    display: block;
+    padding: 20px;
+}
+
+.upper > label {
+    font-size: xx-large;
+    padding-top: 20px;
+}
+
+.lower{
+    display: block;
+    padding: 60px 80px 80px 80px;
+
+}
+
+
+.line{
+    display: flex;
+}
+
+.line > input{
+
+    width:100%;
+    margin: 0 10px 0 10px;
+    padding: 5px 30px 5px 30px;
+    border-radius: 50px ;
+    border: solid black 1px;
+}
+
+.lower > button {
+    border: solid  rgb(255, 119, 0) 1px;
+    padding: 20px;
+    border-radius: 50px;
+    position: absolute ;
+    right: 0;
+    margin-right: 150px;
+}
+
+.place {
+    color: white!important;
+}
