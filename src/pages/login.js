@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from '../styles/login.module.css';
+import ActiveOrders from './activeorders';
 
 const Login = () => {
   return (
@@ -14,12 +15,12 @@ const Login = () => {
             </div>
             <div className={styles.loginField}>
               <i className={`fas fa-lock ${styles.loginIcon}`}></i>
-              <input type="password" className={styles.loginInput} placeholder="Name" />
+              <input type="text" className={styles.loginInput} placeholder="Name" />
             </div>
-            <button className={`${styles.button} ${styles.loginSubmit}`}>
+            <a href='./activeorders'><button className={`${styles.button} ${styles.loginSubmit}`}>
               <span className={styles.buttonText}>Log In Now</span>
               <i className={`fas fa-chevron-right ${styles.buttonIcon}`}></i>
-            </button>
+            </button></a>
           </form>
          
         </div>

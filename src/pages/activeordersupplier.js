@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react';
-import Navbar from './navbar';
+import Navbar from './navbar2';
+// import vieworder from "./vieworder";
+
+import Link from 'next/link';
 
 import styles from "../styles/activeO.module.css"
 
 
 
+
 export default function ActiveOrders() {
     const [orders, setOrders] = useState([]);
+    console.log(orders);
+   
+
 
     useEffect(() => {
       const fetchData = async () => {
@@ -14,7 +21,7 @@ export default function ActiveOrders() {
           const config = {
             method: "GET"
           }
-          const response = await fetch('/api/order2', config); 
+          const response = await fetch('/api/ordersupplier', config); 
           
           const data = await response.json();
   
@@ -38,7 +45,7 @@ export default function ActiveOrders() {
     <div className={styles.container}>
     <div className={styles.upper}>
 
-<h1><strong> Order &#62; Completed Orders </strong></h1>
+<h1><strong> Order &#62; Active Orders </strong></h1>
 {/* <hr className={styles.styled_hr}></hr>
 <br></br>
 <label> <strong> Order Number </strong> Generated at the End  </label> */}
@@ -58,8 +65,10 @@ export default function ActiveOrders() {
     <div className={styles.tableHeading}>View</div>
     </div>
     <hr className={styles.hr}></hr>
+
+  
     
- 
+
   {orders.map(order => (
      <div key={order.order_id} className={styles.order}>
 
@@ -67,6 +76,13 @@ export default function ActiveOrders() {
     <td>{order.order_id}</td>
     <td>{order.status}</td>
     <button> View </button>
+    <Link
+  href={{
+    pathname: './vieworder',
+    query: "1"
+  }}
+></Link>
+
 
   </div>
   ))}
@@ -75,6 +91,7 @@ export default function ActiveOrders() {
         
     </div>
     </div>
+
     </div>
 
 

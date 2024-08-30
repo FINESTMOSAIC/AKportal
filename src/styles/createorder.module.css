@@ -61,3 +61,7 @@
 .place {
     color: white!important;
 }
+
+.upper > select {
+    border: solid black 2px;
+}

@@ -10,8 +10,8 @@ export default function Navbar(){
         <div className={styles.Navbar}>
 
 
-            <div className={styles.company}>
-                <img className={styles.logo} src="../../logo_white.png"></img>
+            <div className={styles.company}><a href="./">
+                <img className={styles.logo} src="../../logo_white.png"></img></a>
 
 
             </div>
@@ -22,9 +22,9 @@ export default function Navbar(){
             <div className={styles.orderbar}>
                 <h1> <strong> ORDERS </strong> </h1>
                 <ul>
-                    <li classname= {styles.place}> Place Order </li>
-                    <li classname= {styles.active}> Active Order </li>
-                    <li classname= {styles.complete}> Complete Order </li>
+                    <li classname= {styles.place}><a href="./createorder"> Place Order </a></li>
+                    <li classname= {styles.active}> <a href="./activeorders">Active Order</a> </li>
+                    <li classname= {styles.complete}> <a href="./completedorders">Complete Order</a> </li>
                 </ul>
             </div>
             {/* orders end  */}
@@ -35,8 +35,8 @@ export default function Navbar(){
             <div className={styles.supplierbar}>
                 <h1> <strong> SUPPLIERS </strong> </h1>
                 <ul>
-                    <li classname= {styles.addS}> Add Supplier </li>
-                    <li classname= {styles.viewS}> View Supplier </li>
+                    <li classname= {styles.addS}> <a href="./addsupplier">Add Supplier</a> </li>
+                    <li classname= {styles.viewS}> <a href="./supplier">View Supplier</a> </li>
                    
                 </ul>
              </div>
@@ -48,8 +48,8 @@ export default function Navbar(){
             <div className={styles.userbar}>
                 <h1> <strong> USERS </strong> </h1>
                 <ul>
-                    <li classname= {styles.addU}> Add User </li>
-                    <li classname= {styles.viewU}> View User </li>
+                    <li classname= {styles.addU}> <a href="./adduser">Add User</a> </li>
+                    <li classname= {styles.viewU}> <a href="./user">View User</a> </li>
                    
                 </ul>
             </div>

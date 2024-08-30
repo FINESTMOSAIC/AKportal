@@ -1,45 +1,35 @@
-import { useState } from 'react';
-import Navbar from './navbar';
+import { useEffect, useState } from 'react';
+import Navbar from './navbar2';
 import styles from "../styles/createorder.module.css"
 
-export default function AddSupplier() {
-  const [s_id, setSupplierSid] = useState('0');
-  const [s_name, setSupplierName] = useState('');
-  const [s_no, setSupplierNo] = useState('');
-  const [s_email, setSupplierEmail] = useState('');
-  const [s_company_name, setSupplierCompanyName] = useState('');
-  const [s_gst, setSupplierGst] = useState('');
-  const [is_active, setSupplierIsActive] = useState(true);
+export default function SPage() {
+    const [suppliers, setSuppliers] = useState([]);
+    const [one_supplier,setSupplierId]= useState('A12');
+    const selectedSupplier = suppliers.find(supplier => supplier.s_id === one_supplier);
+    console.log(selectedSupplier);
+    useEffect(() => 
+        {const fetchData = async () => {
+        try {
+            const config = {
+                method: "GET"
+            }
+          const response = await fetch('/api/supplier', config); 
+          const data = await response.json();
+  
+          setSuppliers(data);
+        }
+        catch (error) {
+            console.error('Error fetching data from API:', error);
+          }
+        };
 
-  const handleUpdate = async () => {
-    try {
-      const response = await fetch('/api/supplier', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          s_id:s_id,
-          s_name:s_name,
-          s_no:s_no,
-          s_email:s_email,
-          s_company_name:s_company_name,
-          s_gst:s_gst,
-          is_active:is_active
-        }),
-      });
+        fetchData();
+    }, []);
 
-      const data = await response.json();
-      alert(data.message)
-      console.log(data.message); // Log the success message or handle it accordingly
-      window.location.reload();
-    } catch (error) {
-      console.error('Error updating supplier:', error);
-    }
-  };
-
-  return (
-    <div className={styles.gridd}>
+    return(
+      
+   
+        <div className={styles.gridd}>
       <div>
         <Navbar />
       </div>
@@ -48,10 +38,18 @@ export default function AddSupplier() {
 
 
 <div className={styles.upper}>
-      <h1>Supplier &#62; Add Supplier</h1>
+      <h1>Supplier &#62; View Supplier</h1>
       <hr className={styles.styled_hr}></hr>
         <br></br>
-        <label> <strong> Supplier Id </strong> :Generated at the End  </label>
+        {selectedSupplier ? (
+        <label> <strong> Supplier Id :  {selectedSupplier.s_id}</strong></label>
+      ) : (<label> <strong> Supplier Id :</strong></label>)}
+       
+        {/* <select onChange={(e) => setSupplierId(e.target.value)}>
+          <option disabled selected value> -- select an option -- </option>
+          {suppliers.map(supplier => (
+             <option key={supplier.s_id} value={supplier.s_id}>{supplier.s_name}({supplier.s_id})</option>))}
+          </select> */}
       {/* <input
         type="text"
         pattern="[a-zA-Z0-9]*$"
@@ -60,6 +58,8 @@ export default function AddSupplier() {
         onChange={(e) => setSupplierSid(e.target.value)}
       /> */}
            </div>
+
+           {selectedSupplier ? (
 
            <div className={styles.lower}>
 
@@ -72,7 +72,7 @@ export default function AddSupplier() {
       <input
         type="text"
         placeholder="Supplier Name"
-        value={s_name}
+        value={selectedSupplier.s_name}
         onChange={(e) => setSupplierName(e.target.value)}
       />
       </div>
@@ -88,7 +88,7 @@ export default function AddSupplier() {
       <input
         type="text"
         placeholder="Supplier Number"
-        value={s_no}
+        value={selectedSupplier.s_no}
         onChange={(e) => setSupplierNo(e.target.value)}
       /></div>
 
@@ -103,7 +103,7 @@ export default function AddSupplier() {
       <input
         type="email"
         placeholder="Supplier Email"
-        value={s_email}
+        value={selectedSupplier.s_email}
         onChange={(e) => setSupplierEmail(e.target.value)}
       />
       </div>
@@ -120,7 +120,7 @@ export default function AddSupplier() {
       <input
         type="text"
         placeholder="Supplier Company Name"
-        value={s_company_name}
+        value={selectedSupplier.s_company_name}
         onChange={(e) => setSupplierCompanyName(e.target.value)}
       />
       </div>
@@ -137,7 +137,7 @@ export default function AddSupplier() {
         type="text"
         pattern="[a-zA-Z0-9]*$"
         placeholder="Supplier GST"
-        value={s_gst}
+        value={selectedSupplier.s_gst}
         onChange={(e) => setSupplierGst(e.target.value)}
       />
 
@@ -149,11 +149,26 @@ export default function AddSupplier() {
         onChange={(e) => setSupplierIsActive(e.target.checked)}
       /> */}
       <br></br>
-      <button onClick={handleUpdate}>Add Supplier</button>
-      </div>
+      {/* <button onClick={handleUpdate}>Add Supplier</button> */}
+      {/* <button >Delete Supplier</button> */}
+
+      </div>) : (<h2> Please select the Supplier</h2>)}
     </div>
     </div>
     
     </div>
-  );
+
+
+
+
+
+
+
+
+    )
+
+
+
+
+
 }
