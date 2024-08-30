@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from './navbar2';
 // import vieworder from "./vieworder";
+import { useRouter } from 'next/router';
 
 import Link from 'next/link';
 
@@ -11,6 +12,19 @@ import styles from "../styles/activeO.module.css"
 
 export default function ActiveOrders() {
     const [orders, setOrders] = useState([]);
+    const router = useRouter();
+    const handleClick = (e) => {
+      // console.log(e);
+      const oder_id = e.target.parentElement.dataset.value;
+      console.log(oder_id);
+      const data ={ key : oder_id }
+
+      router.push({
+        pathname: '/vieworderSuppliers',
+        query: data,
+      });
+
+    }
     console.log(orders);
    
 
@@ -70,15 +84,15 @@ export default function ActiveOrders() {
     
 
   {orders.map(order => (
-     <div key={order.order_id} className={styles.order}>
+     <div key={order.order_id}  data-value={order.order_id} className={styles.order}>
 
     <td>{order.ordername}</td>
     <td>{order.order_id}</td>
     <td>{order.status}</td>
-    <button> View </button>
+    <button  onClick={handleClick} > View </button>
     <Link
   href={{
-    pathname: './vieworder',
+    pathname: './vieworderSuppliers',
     query: "1"
   }}
 ></Link>

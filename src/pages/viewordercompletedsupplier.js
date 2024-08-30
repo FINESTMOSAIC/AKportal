@@ -1,6 +1,6 @@
 import styles from "../styles/createorder.module.css"
 import { useEffect, useState } from 'react';
-import Navbar from './navbar';
+import Navbar from './navbar2';
 
 import { useRouter } from 'next/router'
 
@@ -14,25 +14,25 @@ export default function vieworder(){
 
   const handleUpdate = async () => {
     try {
-      const config =  {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          order_id: orderId,
-          status: status
-        }),
-      }
-      console.log('Updating Status FUnction' + config )
+      // const config =  {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     order_id: orderId,
+      //     status: status
+      //   }),
+      // }
+      // console.log('Updating Status FUnction' + config )
 
-      const response = await fetch('/api/order',config);
+      // const response = await fetch('/api/order',config);
 
-      const data = await response.json();
+      // const data = await response.json();
 
       
-      alert(data.message)
-      console.log(data.message); 
+      // alert(data.message)
+      // console.log(data.message); 
       router.back();
     } catch (error) {
       console.error('Error updating order:', error);
@@ -249,7 +249,7 @@ export default function vieworder(){
 
 
 {/* <button >Update Order</button> */}
-<button onClick={handleUpdate}  >Update Order</button>
+<button onClick={handleUpdate}  >Go Back</button>
 </div> 
     </div>
      ))}

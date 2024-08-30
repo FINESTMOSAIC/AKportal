@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from './navbar';
 import { useRouter } from 'next/router';
-// import vieworder from "./vieworder";
 
 import Link from 'next/link';
 

@@ -5,10 +5,36 @@ import ActiveOrders from './activeorders';
 import { useRouter } from 'next/router';
 
 
+
+
+
 const Login = () => {
+
+  const [userId, setUserId] = useState('');
+  const [name, setName] = useState('');
+
+  const handleUserIdChange = (event) => {
+    setUserId(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('User ID:', userId);
+    console.log('Name:', name);
+    // Perform actions like API requests here
+  };
+
+
+
   const router = useRouter();
   const handleButtonClick = (e) => {
     e.preventDefault();
+
+
     router.push('./activeorders');
   };
   return (
@@ -18,11 +44,13 @@ const Login = () => {
           <form className={styles.login}>
             <div className={styles.loginField}>
               <i className={`fas fa-user ${styles.loginIcon}`}></i>
-              <input type="text" className={styles.loginInput} placeholder="User/Supplier Id" />
+              <input type="text" className={styles.loginInput} value={userId}
+          onChange={handleUserIdChange} placeholder="User/Supplier Id" />
             </div>
             <div className={styles.loginField}>
               <i className={`fas fa-lock ${styles.loginIcon}`}></i>
-              <input type="text" className={styles.loginInput} placeholder="Name" />
+              <input type="text" className={styles.loginInput} value={name}
+          onChange={handleNameChange} placeholder="Name" />
             </div>
             <button onClick={handleButtonClick} className={`${styles.button} ${styles.loginSubmit}`}>
               <span className={styles.buttonText}>Log In Now</span>

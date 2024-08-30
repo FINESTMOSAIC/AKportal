@@ -1,6 +1,6 @@
 import styles from "../styles/createorder.module.css"
 import { useEffect, useState } from 'react';
-import Navbar from './navbar';
+import Navbar from './navbar2';
 
 import { useRouter } from 'next/router'
 

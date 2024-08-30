@@ -49,6 +49,16 @@
     border: solid black 1px;
 }
 
+.line > select{
+
+    width:100%;
+    margin: 0 10px 0 10px;
+    padding: 5px 30px 5px 30px;
+    border-radius: 50px ;
+    border: solid black 1px;
+}
+
+
 .lower > button {
     border: solid  rgb(255, 119, 0) 1px;
     padding: 20px;
