@@ -175,12 +175,21 @@ export default function vieworder(){
           <label>
             Status
           </label>
-          <input
+          <select onChange={(e) => updateStatus( order.order_id ,e.target.value)} >
+          <option disabled selected value> {order.status} </option>
+          <option value="Pending">Pending</option>
+          <option value="Awaiting_Pickup">Awaiting Pickup</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Completed">Completed</option>
+
+          </select>
+
+          {/* <input
           type="text"
           placeholder="Order Status"
           value={order.status}
           onChange={(e) => updateStatus( order.order_id ,e.target.value)}
-        />
+        /> */}
 
         </div>
 

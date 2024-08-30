@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect , useState } from 'react';
 import Navbar from './navbar';
 
 import styles from "../styles/createorder.module.css"
@@ -19,6 +19,27 @@ export default function UpdateOrder() {
   const [getquantity , setquantity] = useState('');
   const [getdesc , setdesc] = useState('');
 
+
+  const [suppliers, setSuppliers] = useState([]);
+  // const [one_supplier,setSupplierId]= useState('');
+  useEffect(() => 
+    {const fetchData = async () => {
+    try {
+        const config = {
+            method: "GET"
+        }
+      const response = await fetch('/api/supplier', config); 
+      const data = await response.json();
+
+      setSuppliers(data);
+    }
+    catch (error) {
+        console.error('Error fetching data from API:', error);
+      }
+    };
+
+    fetchData();
+}, []);
 
   const handleUpdate = async () => {
     try {
@@ -103,12 +124,17 @@ export default function UpdateOrder() {
           <label>
             Supplier Id
           </label>
+          <select onChange={(e) => setOrderSid(e.target.value)}>
+          <option disabled selected value> -- select an option -- </option>
+          {suppliers.map(supplier => (
+             <option key={supplier.s_id} value={supplier.s_id}>{supplier.s_name}({supplier.s_id})</option>))}
+          </select>
           <input
           type="text"
           pattern="[a-zA-Z0-9]*$"
           placeholder="Supplier ID"
-          value={s_id}
-          onChange={(e) => setOrderSid(e.target.value)}
+          value={s_id} disabled
+
         />
 
         </div>
@@ -141,12 +167,19 @@ export default function UpdateOrder() {
           <label>
             Status
           </label>
-          <input
+          <select onChange={(e) => setOrderStatus(e.target.value)} >
+          <option disabled selected value> -- select an status -- </option>
+          <option value="Pending">Pending</option>
+          <option value="Awaiting_Pickup">Awaiting Pickup</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Completed">Completed</option>
+            </select>
+          {/* <input
           type="text"
           placeholder="Order Status"
           value={status}
           onChange={(e) => setOrderStatus(e.target.value)}
-        />
+        /> */}
 
         </div>
 

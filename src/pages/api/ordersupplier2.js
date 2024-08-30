@@ -8,7 +8,7 @@ async function getData(){
 }
 
 async function getData2(){
-  const {rows} = await pool.query("SELECT * FROM public.orders where status = 'Completed'  AND s_id = $1 ", ['A123']);
+  const {rows} = await pool.query("SELECT * FROM public.orders where status = 'Completed'  AND s_id = $1 ", ['S123']);
   return rows
 }
 

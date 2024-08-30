@@ -4,7 +4,7 @@ import styles from "../styles/createorder.module.css"
 
 export default function SPage() {
     const [suppliers, setSuppliers] = useState([]);
-    const [one_supplier,setSupplierId]= useState('A12');
+    const [one_supplier,setSupplierId]= useState('S123');
     const selectedSupplier = suppliers.find(supplier => supplier.s_id === one_supplier);
     console.log(selectedSupplier);
     useEffect(() => 
