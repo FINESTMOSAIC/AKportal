@@ -18,7 +18,7 @@ async function createData(req,res){
   // const { rowCount } = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
   const result = await pool.query('SELECT COUNT(*) as rowCount FROM users');
             const r= result.rows[0].rowCount;
-            const u_id = result.rows[0].rowcount +1;
+            const u_id = 'U' + result.rows[0].rowcount +1;
 
   await pool.query(
     'INSERT INTO users (user_id, user_name, user_email, user_role) VALUES ($1, $2, $3, $4)',

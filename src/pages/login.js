@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from '../styles/login.module.css';
 import ActiveOrders from './activeorders';
@@ -21,21 +22,36 @@ const Login = () => {
     setName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+  
     console.log('User ID:', userId);
     console.log('Name:', name);
+    if (userId.startsWith('U')) {
+      router.push('./activeorders');}
+    
+    else if (userId.startsWith('S')){
+      router.push('./supplierprofile');
+
+    }
+    else{
+      alert("Invalid User ID :" + userId + " Try Again ")
+      router.push('./');
+    }
+ 
     // Perform actions like API requests here
   };
 
 
 
   const router = useRouter();
+  
   const handleButtonClick = (e) => {
+
     e.preventDefault();
+    handleSubmit(); 
 
 
-    router.push('./activeorders');
+    
   };
   return (
     <div className={styles.container}>
