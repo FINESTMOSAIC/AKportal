@@ -48,7 +48,7 @@ export default function UpdateOrder() {
       const data = await response.json();
       alert(data.message)
       console.log(data.message); 
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.error('Error updating order:', error);
     }

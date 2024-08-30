@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from './navbar';
-// import vieworder from "./vieworder";
-
-import Link from 'next/link';
 
 import styles from "../styles/activeO.module.css"
-
 
 
 
@@ -18,7 +14,7 @@ export default function ActiveOrders() {
           const config = {
             method: "GET"
           }
-          const response = await fetch('/api/order', config); 
+          const response = await fetch('/api/order2', config); 
           
           const data = await response.json();
   
@@ -71,13 +67,6 @@ export default function ActiveOrders() {
     <td>{order.order_id}</td>
     <td>{order.status}</td>
     <button> View </button>
-    <Link
-  href={{
-    pathname: './vieworder',
-    query: "1"
-  }}
-></Link>
-
 
   </div>
   ))}
@@ -86,7 +75,6 @@ export default function ActiveOrders() {
         
     </div>
     </div>
-
     </div>
 
 

@@ -10,11 +10,14 @@ async function createData( req , res ){
 
   try{
     // const { rowCount } = await pool.query('SELECT * FROM orders WHERE s_id = $1', [s_id]);
+    const result = await pool.query('SELECT COUNT(*) as rowCount FROM suppliers');
+            const r= result.rows[0].rowCount;
+            const sup_id = result.rows[0].rowcount +1;
     await pool.query(
       'INSERT INTO suppliers (s_id , s_name , s_no , s_email , s_company_name , s_gst , is_active) VALUES ($1, $2, $3 , $4 , $5 , $6 , $7 )',
-      [s_id , s_name , s_no , s_email , s_company_name , s_gst , is_active]
+      [sup_id , s_name , s_no , s_email , s_company_name , s_gst , is_active]
     );
-   return 'Supplier added successfully';
+   return 'Supplier added successfully and supplier id is '+ [sup_id];
   }
 
   catch (error) {

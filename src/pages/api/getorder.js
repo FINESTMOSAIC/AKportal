@@ -2,19 +2,19 @@ import pool from '../../../utils/pdb';
 
 
 
-async function getData(){
-  const { rows } = await pool.query('SELECT * FROM orders'); 
-  return rows
-}
+// async function getData(){
+//   const { rows } = await pool.query('SELECT * FROM orders'); 
+//   return rows
+// }
 
-async function getData2(){
-  const {rows} = await pool.query("SELECT * FROM public.orders where status != 'Completed' ");
-  return rows
-}
+async function getData(order_id){
+    // console.log("req data2",req.body.get("order_id"));
+    
 
-async function createData(req,res){
-    const { order_id, ordername,d_date,order_details,create_date,is_delay,is_active,s_id,u_id,status} = req.body;
-//     console.log("Order ID:", order_id);
+    
+  const {rows} = await pool.query("SELECT * FROM public.orders where order_id = $1 ", [order_id]);
+  
+      console.log("Order ID:", order_id);
 // console.log("Order Name:", ordername);
 // console.log("Delivery Date:", d_date);
 // console.log("Order Details:", order_details);
@@ -24,6 +24,12 @@ async function createData(req,res){
 // console.log("Supplier ID:", s_id);
 // console.log("User ID:", u_id);
 // console.log("Status:", status);
+  return rows
+}
+
+async function createData(req,res){
+    const { order_id, ordername,d_date,order_details,create_date,is_delay,is_active,s_id,u_id,status} = req.body;
+
 
     try {
         
@@ -67,13 +73,17 @@ export default async function handler(req, res) {
     try {
         switch (req.method) {
 
-          case "GET":
+          case "POST":
+            
 
-            let rows = await getData2();
+            const {order_id} = req.body;
+            // console.log("this",order_id)
+            let rows = await getData(order_id);
+            console.log(rows)
             res.status(200).json(rows);
             break;
             
-          case "POST":
+          case "GET":
 
             
             
@@ -81,7 +91,7 @@ export default async function handler(req, res) {
             res.status(200).json({"message": createResp});
             break;
 
-     
+        
         
           default:
             break;

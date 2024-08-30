@@ -2,13 +2,13 @@ import pool from '../../../utils/pdb';
 
 
 
-async function getData(){
-  const { rows } = await pool.query('SELECT * FROM orders'); 
-  return rows
-}
+// async function getData(){
+//   const { rows } = await pool.query('SELECT * FROM orders'); 
+//   return rows
+// }
 
-async function getData2(){
-  const {rows} = await pool.query("SELECT * FROM public.orders where status != 'Completed' ");
+async function getData(){
+  const {rows} = await pool.query("SELECT * FROM public.orders where status = 'Completed' ");
   return rows
 }
 
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
 
           case "GET":
 
-            let rows = await getData2();
+            let rows = await getData();
             res.status(200).json(rows);
             break;
             
@@ -81,7 +81,7 @@ export default async function handler(req, res) {
             res.status(200).json({"message": createResp});
             break;
 
-     
+        
         
           default:
             break;

@@ -7,11 +7,13 @@ export function Test(){
 }
 
 
-export function Test2() {
+export default function Test2() {
     return (
         <>
         in test 2
+        <Test />
         </>
+
     )
     
 }
