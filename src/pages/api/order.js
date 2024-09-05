@@ -2,10 +2,10 @@ import pool from '../../../utils/pdb';
 
 
 
-async function getData(){
-  const { rows } = await pool.query('SELECT * FROM orders'); 
-  return rows
-}
+// async function getData(){
+//   const { rows } = await pool.query('SELECT * FROM orders'); 
+//   return rows
+// }
 
 async function getData2(){
   const {rows} = await pool.query("SELECT * FROM public.orders where status != 'Completed' ");

@@ -2,8 +2,13 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 import styles from '../styles/login.module.css';
-import ActiveOrders from './activeorders';
+
 import { useRouter } from 'next/router';
+
+import { storeData , removeData, getData } from '../../utils/localstorage';
+
+
+
 
 
 
@@ -11,8 +16,14 @@ import { useRouter } from 'next/router';
 
 const Login = () => {
 
+
+
   const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
+  const [table, setTableName] = useState('');
+
+
+  
 
   const handleUserIdChange = (event) => {
     setUserId(event.target.value);
@@ -22,37 +33,94 @@ const Login = () => {
     setName(event.target.value);
   };
 
-  const handleSubmit = () => {
-  
+
+  const check = async (table1) => {
+    
+    try {
+      console.log("In the check " + table1);
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username : userId,
+          name : name,
+          table : table1
+
+        }),
+      });
+      
+      const data = await response.json();
+
+      removeData(data.message);
+      storeData(data.message , data.data)
+      console.log(getData(data.message));
+      if (data.message == "user"){
+        
+        router.push('./activeorders');
+        
+      }
+      else if (data.message == "supplier"){
+        router.push('./supplierprofile');
+      }
+      else {
+        alert (data.message);
+        window.location.reload();
+
+      }
+
+
+    } catch (error) {
+      alert("Inavalid username or password. Try Again");
+      window.location.reload();
+      router.push('./');
+      
+      console.error('Error in details :', error);
+    }
+
+
+  };
+
+  const handleButtonClick = async (e) => {
+    e.preventDefault();
+
     console.log('User ID:', userId);
     console.log('Name:', name);
+    let table = "";
+
     if (userId.startsWith('U')) {
-      router.push('./activeorders');}
+      // setTableName("users");
+      table = "users";
+      await check(table);
+    }
     
     else if (userId.startsWith('S')){
-      router.push('./supplierprofile');
-
+      // setTableName("suppliers");
+      table ="suppliers";
+      console.log(table)
+      await check(table);
     }
     else{
       alert("Invalid User ID :" + userId + " Try Again ")
       router.push('./');
     }
- 
-    // Perform actions like API requests here
+
   };
 
 
 
   const router = useRouter();
   
-  const handleButtonClick = (e) => {
+  // const handleButtonClick = (e) => {
+  //   e.preventDefault();
+  //   handleSubmit(); 
+  // };
 
-    e.preventDefault();
-    handleSubmit(); 
 
 
-    
-  };
+
+
   return (
     <div className={styles.container}>
       <div className={styles.screen}>

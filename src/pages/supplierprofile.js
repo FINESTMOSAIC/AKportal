@@ -1,12 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useRef } from 'react';
 import Navbar from './navbar2';
 import styles from "../styles/createorder.module.css"
+import { getData } from '../../utils/localstorage';
+
 
 export default function SPage() {
-    const [suppliers, setSuppliers] = useState([]);
-    const [one_supplier,setSupplierId]= useState('S123');
+  const [supplierData , setSupplierData] = useState();
+  
+  
+  const [one_supplier,setSupplierId]= useState('');
+  const [suppliers, setSuppliers] = useState([]);
+  const hasRun = useRef(false); 
+    useEffect (() => {
+      if (!hasRun.current){
+      setSupplierData(getData("supplier"));
+
+      console.log( "testssdewc"+ supplierData)
+      if (supplierData){
+        setSupplierId(supplierData[0].s_id)
+        hasRun.current = true;
+      
+      }}
+    
+
+    }, [supplierData]);
+
+    
+
     const selectedSupplier = suppliers.find(supplier => supplier.s_id === one_supplier);
-    console.log(selectedSupplier);
+
     useEffect(() => 
         {const fetchData = async () => {
         try {
@@ -73,7 +95,6 @@ export default function SPage() {
         type="text"
         placeholder="Supplier Name"
         value={selectedSupplier.s_name}
-        onChange={(e) => setSupplierName(e.target.value)}
       />
       </div>
 
@@ -89,7 +110,6 @@ export default function SPage() {
         type="text"
         placeholder="Supplier Number"
         value={selectedSupplier.s_no}
-        onChange={(e) => setSupplierNo(e.target.value)}
       /></div>
 
 <br></br>
@@ -104,7 +124,6 @@ export default function SPage() {
         type="email"
         placeholder="Supplier Email"
         value={selectedSupplier.s_email}
-        onChange={(e) => setSupplierEmail(e.target.value)}
       />
       </div>
 
@@ -121,7 +140,6 @@ export default function SPage() {
         type="text"
         placeholder="Supplier Company Name"
         value={selectedSupplier.s_company_name}
-        onChange={(e) => setSupplierCompanyName(e.target.value)}
       />
       </div>
 
@@ -138,7 +156,7 @@ export default function SPage() {
         pattern="[a-zA-Z0-9]*$"
         placeholder="Supplier GST"
         value={selectedSupplier.s_gst}
-        onChange={(e) => setSupplierGst(e.target.value)}
+       
       />
 
       </div>
