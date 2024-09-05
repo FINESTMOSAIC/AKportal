@@ -1,12 +1,6 @@
 import pool from '../../../utils/pdb';
 
 
-
-// async function getData(){
-//   const { rows } = await pool.query('SELECT * FROM orders'); 
-//   return rows
-// }
-
 async function getData2(){
   const {rows} = await pool.query("SELECT * FROM public.orders where status != 'Completed' ");
   return rows
@@ -14,16 +8,7 @@ async function getData2(){
 
 async function createData(req,res){
     const { order_id, ordername,d_date,order_details,create_date,is_delay,is_active,s_id,u_id,status} = req.body;
-//     console.log("Order ID:", order_id);
-// console.log("Order Name:", ordername);
-// console.log("Delivery Date:", d_date);
-// console.log("Order Details:", order_details);
-// console.log("Creation Date:", create_date);
-// console.log("Is Delay:", is_delay);
-// console.log("Is Active:", is_active);
-// console.log("Supplier ID:", s_id);
-// console.log("User ID:", u_id);
-// console.log("Status:", status);
+
 
     try {
         
