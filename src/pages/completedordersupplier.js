@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import styles from "../styles/activeO.module.css";
 import { getData } from '../../utils/localstorage';
 
+// completed order supplier side 
+
 export default function ActiveOrders() {
   const [orders, setOrders] = useState([]);
   const router = useRouter();
@@ -14,7 +16,7 @@ export default function ActiveOrders() {
     const data = { key: order_id };
 
     router.push({
-      pathname: '/vieworderSuppliers',
+      pathname: '/viewordercompletedsupplier',
       query: data,
     });
   };
@@ -61,7 +63,9 @@ export default function ActiveOrders() {
 
   return (
     <div className={styles.gridd}>
+      {/* importing navbar */}
       <div>
+        
         <Navbar />
       </div>
 

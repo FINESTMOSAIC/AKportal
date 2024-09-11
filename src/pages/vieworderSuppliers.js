@@ -4,6 +4,8 @@ import Navbar from './navbar2';
 
 import { useRouter } from 'next/router'
 
+// view order supplier side 
+
 
 
 export default function vieworder(){  
@@ -101,6 +103,7 @@ export default function vieworder(){
 
 
        <div className={styles.gridd}>
+        {/* importing navbar  */}
       <div>
         <Navbar />
       </div>
@@ -147,7 +150,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Amount
           </label>
@@ -158,7 +161,7 @@ export default function vieworder(){
           
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Quantity
           </label>
           <input
@@ -202,7 +205,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Delivery Date
           </label>
@@ -212,7 +215,7 @@ export default function vieworder(){
           value={order.d_date}
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Order Date
           </label>
           <input

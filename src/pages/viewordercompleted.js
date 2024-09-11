@@ -5,11 +5,12 @@ import Navbar from './navbar';
 import { useRouter } from 'next/router'
 
 
+// viewig complete order
 
-export default function vieworder(){  
+export default function vieworder(){
   const [orderId, getorderId] = useState(null);
   const [order, setOrders] = useState([]);
-  const [status, setOrderStatus] = useState('');
+
   const router = useRouter();
 
   const handleUpdate = async () => {
@@ -30,15 +31,15 @@ export default function vieworder(){
 
       // const data = await response.json();
 
-      
+
       // alert(data.message)
-      // console.log(data.message); 
+      // console.log(data.message);
       router.back();
     } catch (error) {
       console.error('Error updating order:', error);
     }
   };
-  
+
   // getorderId(key);
 
   const updateStatus = (oi,new_Val) => {
@@ -47,24 +48,24 @@ export default function vieworder(){
 
   }
 
-  
-  
-  
-  
+
+
+
+
   useEffect(() => {
-    
+
     // const { query } = router;
 
-  
+
     if(!router.isReady) return;
     console.log(router.isReady);
     const q = router.query;
     const { key } = q;
     getorderId(key);
-    
+
       console.log('orderId  ' + orderId);
 
-      
+
       const fetchData = async () => {
         try {
           const config = {
@@ -78,12 +79,12 @@ export default function vieworder(){
           console.log(config);
         //   const response = await fetch(`/api/getorder?order_id=${orderId}`, config);
           const response = await fetch(`/api/getorder`, config);
-          
+
           const data = await response.json();
-  
+
           setOrders(data);
-          
-          
+
+
         } catch (error) {
           console.error('Error fetching data from API:', error);
         }
@@ -97,10 +98,11 @@ export default function vieworder(){
 
 
 
-       
+
 
 
        <div className={styles.gridd}>
+        {/* importing navbar */}
       <div>
         <Navbar />
       </div>
@@ -115,7 +117,7 @@ export default function vieworder(){
   <hr className={styles.styled_hr}></hr>
   <br></br>
   <label> <strong> Order Number </strong>{order.order_id}  </label>
-  
+
 </div>
 <div className={styles.lower}>
 
@@ -147,7 +149,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Amount
           </label>
@@ -155,17 +157,17 @@ export default function vieworder(){
           type="Number"
           placeholder="Amount"
           value={order.order_details[0]}
-          
+
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Quantity
           </label>
           <input
           type="Number"
           placeholder="Quantity"
           value={order.order_details[2]}
-         
+
         />
         </div>
 
@@ -200,7 +202,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Delivery Date
           </label>
@@ -210,7 +212,7 @@ export default function vieworder(){
           value={order.d_date}
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Order Date
           </label>
           <input
@@ -229,7 +231,7 @@ export default function vieworder(){
           checked={oreder.is_delay}
           onChange={(e) => setOrderIsDelay(e.target.checked)}
         /> */}
-      
+
 
 
 
@@ -250,26 +252,26 @@ export default function vieworder(){
 
 {/* <button >Update Order</button> */}
 <button onClick={handleUpdate}  >Go Back</button>
-</div> 
+</div>
     </div>
      ))}
      </div>
      </div>
-    
-  
-
-    
-       
 
 
 
 
 
-      
-      
+
+
+
+
+
+
+
       )
 
-       
 
-       
+
+
 }
