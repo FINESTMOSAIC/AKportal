@@ -37,10 +37,25 @@
 
 
 .line{
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+.line2{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 10% 45% 45%;
+}
+.line3{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 10% 40% 10% 40%; 
+   
 }
 
-.line > input{
+
+
+.line > input , .line2 > input , .line3 > input {
 
     width:100%;
     margin: 0 10px 0 10px;
@@ -49,7 +64,7 @@
     border: solid black 1px;
 }
 
-.line > select{
+.line2 > select , .line > select{
 
     width:100%;
     margin: 0 10px 0 10px;

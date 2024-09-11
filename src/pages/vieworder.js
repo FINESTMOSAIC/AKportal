@@ -5,7 +5,7 @@ import Navbar from './navbar';
 import { useRouter } from 'next/router'
 
 
-
+// for viewing specific order
 export default function vieworder(){  
   const [orderId, getorderId] = useState(null);
   const [order, setOrders] = useState([]);
@@ -99,13 +99,15 @@ export default function vieworder(){
 
        
 
-
+// seting a grid layout to seprate navbar 
        <div className={styles.gridd}>
+        {/* importing navbar */}
       <div>
         <Navbar />
       </div>
 
 <div className={styles.container}>
+  {/* using map to create the data based on imput  */}
 
 {...order.map(order => (
             <div key={order.order_id} className={styles.order}>
@@ -147,7 +149,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Amount
           </label>
@@ -158,7 +160,7 @@ export default function vieworder(){
           
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Quantity
           </label>
           <input
@@ -175,6 +177,7 @@ export default function vieworder(){
           <label>
             Status
           </label>
+          {/* to change status  */}
           <select onChange={(e) => updateStatus( order.order_id ,e.target.value)} >
           <option disabled selected value> {order.status} </option>
           <option value="Pending">Pending</option>
@@ -209,7 +212,7 @@ export default function vieworder(){
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Delivery Date
           </label>
@@ -219,7 +222,7 @@ export default function vieworder(){
           value={order.d_date}
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Order Date
           </label>
           <input

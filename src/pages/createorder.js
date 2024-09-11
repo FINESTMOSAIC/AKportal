@@ -3,6 +3,7 @@ import Navbar from './navbar';
 
 import styles from "../styles/createorder.module.css"
 
+// for adding order
 
 export default function UpdateOrder() {
   const [id, setOrderId] = useState('0');
@@ -76,7 +77,9 @@ export default function UpdateOrder() {
   };
 
   return (
+    // seting a grid layout to seprate navbar 
     <div className={styles.gridd}>
+      {/* importing navbar */}
       <div>
         <Navbar />
       </div>
@@ -120,7 +123,7 @@ export default function UpdateOrder() {
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line2}>
           <label>
             Supplier Id
           </label>
@@ -141,17 +144,17 @@ export default function UpdateOrder() {
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Amount
           </label>
-          <input
+          <input 
           type="Number"
           placeholder="Amount"
           onChange={(e) => setAmount(e.target.value)}
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Quantity
           </label>
           <input
@@ -199,7 +202,7 @@ export default function UpdateOrder() {
 
         <br></br>
 
-        <div className={styles.line}>
+        <div className={styles.line3}>
           <label>
            Delivery Date
           </label>
@@ -210,7 +213,7 @@ export default function UpdateOrder() {
           onChange={(e) => setOrderDDate(e.target.value)}
         />
 
-          <label>
+          <label style={{marginLeft:'20px'}}>
            Order Date
           </label>
           <input
